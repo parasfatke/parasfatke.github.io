@@ -3,30 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tourist Enquiry - Solapur Tourism</title>
+<title>Tourist Enquiry - Solapur Premium</title>
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* --- Global Styles (Matching Theme) --- */
+/* --- Global Styles: Premium Dark Mode --- */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: #f4f7f6; /* Soft, clean background */
+    color: #e2e8f0;
+    /* Deep midnight slate background */
+    background-color: #0b1120; 
+    /* Subtle radial gradient to draw the eye to the center */
+    background-image: radial-gradient(circle at top center, #1e293b 0%, #0b1120 100%);
+    background-attachment: fixed;
     overflow-x: hidden;
 }
 
-/* --- Header & Navigation (Sticky & Glassmorphism) --- */
+/* --- Header & Navigation (Dark Glassmorphism) --- */
 header {
     text-align: center;
     padding: 25px 20px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px); 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    background: rgba(11, 17, 32, 0.7);
+    backdrop-filter: blur(15px); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -39,27 +43,32 @@ header {
 }
 
 header h1 {
-    color: #2c3e50;
+    color: #f8fafc;
     margin: 0 0 15px 0;
     font-size: 32px;
+    letter-spacing: 1px;
 }
 
 nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
 }
 
 nav a {
     text-decoration: none;
-    color: #555;
-    font-weight: 600;
+    color: #94a3b8;
+    font-weight: 500;
+    font-size: 15px;
     position: relative;
     padding-bottom: 5px;
     transition: color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
+/* Premium Amber Underline */
 nav a::after {
     content: '';
     position: absolute;
@@ -67,140 +76,169 @@ nav a::after {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #e74c3c;
-    transition: width 0.3s ease;
+    background-color: #f5a623;
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-nav a:hover {
-    color: #e74c3c;
+nav a:hover, nav a:focus {
+    color: #f5a623;
 }
 
 nav a:hover::after {
     width: 100%;
 }
 
-/* --- Container & Section Cards (Matching Theme) --- */
+/* --- Container & Floating Form Card --- */
 .container {
-    max-width: 800px; /* Slightly narrower for a form to look neat */
-    margin: 40px auto;
+    max-width: 750px; 
+    margin: 60px auto;
     padding: 0 20px;
 }
 
 section {
-    background: #ffffff;
-    border-radius: 15px;
-    padding: 40px;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 50px;
     margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border-left: 5px solid #e74c3c; /* Signature red border */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     
     /* Starting state for JS scroll reveal */
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
 }
 
-/* Class added by JS when scrolled into view */
 section.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
 h2 {
-    color: #2c3e50;
-    font-size: 28px;
+    color: #f5a623; /* Amber accent */
+    font-size: 32px;
     margin-top: 0;
-    margin-bottom: 25px;
-    border-bottom: 2px solid #f0f0f0;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
     text-align: center;
+    font-weight: 600;
+}
+
+.subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    font-size: 15px;
 }
 
 /* --- Form Specific Styles --- */
 form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
 
 .input-group {
     display: flex;
     flex-direction: column;
     text-align: left;
+    position: relative;
 }
 
 label {
-    font-weight: 600;
-    color: #2c3e50;
-    font-size: 15px;
+    font-weight: 500;
+    color: #cbd5e1;
+    font-size: 14px;
     margin-bottom: 8px;
+    letter-spacing: 0.5px;
 }
 
+/* Custom High-End Inputs */
 input[type="text"],
 input[type="number"],
 input[type="date"],
 textarea {
     width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    background-color: #fcfcfc;
+    background-color: rgba(15, 23, 42, 0.8);
+    color: #f8fafc;
     transition: all 0.3s ease;
-    box-sizing: border-box; /* Ensures padding doesn't widen the box */
+    box-sizing: border-box; 
 }
 
-/* Hover & Focus states for inputs */
+/* Custom placeholder color */
+::placeholder {
+    color: #64748b;
+}
+
+/* Dark mode calendar icon fix */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+/* Input Hover & Focus */
 input:hover, textarea:hover {
-    border-color: #ccc;
+    border-color: rgba(245, 166, 35, 0.4);
 }
 
 input:focus, textarea:focus {
     outline: none;
-    border-color: #e74c3c;
-    background-color: #fff;
-    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15); /* Soft glow effect */
+    border-color: #f5a623;
+    background-color: rgba(15, 23, 42, 1);
+    box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.1); 
 }
 
 textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 140px;
 }
 
-/* Submit Button */
+/* --- Premium Submit Button --- */
 button[type="submit"] {
-    background-color: #e74c3c;
-    color: white;
-    padding: 16px;
+    background: linear-gradient(135deg, #f5a623 0%, #d97706 100%);
+    color: #0f172a;
+    padding: 18px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    margin-top: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-top: 15px;
+    text-transform: uppercase;
 }
 
 button[type="submit"]:hover {
-    background-color: #c0392b;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px -5px rgba(245, 166, 35, 0.4);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
 }
 
 /* --- Footer --- */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #2c3e50;
-    color: white;
-    margin-top: 40px;
+    padding: 25px;
+    background-color: #020617;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #64748b;
+    margin-top: 60px;
+    font-size: 14px;
 }
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     section {
-        padding: 25px;
+        padding: 30px 20px;
     }
 }
 </style>
@@ -225,6 +263,7 @@ footer {
 <div class="container">
     <section class="reveal">
         <h2>Plan Your Visit</h2>
+        <p class="subtitle">Reach out to us to begin your journey through Solapur.</p>
         
         <form onsubmit="return validateForm()">
             
