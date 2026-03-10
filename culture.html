@@ -1,140 +1,267 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Culture - Solapur Tourism</title>
 <link rel="stylesheet" href="style.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-
-.image-gallery{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-margin-top:15px;
+/* --- Global Styles & Animated Background --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    /* Animated Gradient Background */
+    background: linear-gradient(-45deg, #f3e5f5, #e3f2fd, #fff3e0, #ffebee);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    overflow-x: hidden;
 }
 
-.image-gallery img{
-width:320px;
-height:220px;
-object-fit:cover;
-border-radius:10px;
-box-shadow:0 4px 8px rgba(0,0,0,0.3);
-transition:0.3s;
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.image-gallery img:hover{
-transform:scale(1.05);
+/* --- Header & Navigation Animations --- */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    /* Slide down animation on load */
+    animation: slideDown 0.8s ease-out forwards;
 }
 
-section{
-padding:30px;
-margin:20px;
-background:white;
-border-radius:10px;
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s;
+}
+
+/* Sliding underline hover effect for links */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #e74c3c;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: #e74c3c;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* --- Section Cards & Scroll Reveal --- */
+section {
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 800px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    
+    /* Starting state for JS scroll reveal */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Class added by JS when scrolled into view */
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    color: #e74c3c;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #2c3e50;
+    margin-top: 25px;
+}
+
+p {
+    line-height: 1.6;
+    color: #555;
+}
+
+/* --- Upgraded Image Gallery --- */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.image-gallery img {
+    width: 100%;
+    max-width: 320px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    /* Added a cubic-bezier for a "bouncy" hover transition */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+}
+
+/* --- Styled Lists --- */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 1.1em;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<h1>Culture of Solapur</h1>
-
-<nav>
-<a href="home.html">Home</a>
-<a href="places.html">Places</a>
-<a href="culture.html">Culture</a>
-<a href="travel-guide.html">Travel Guide</a>
-<a href="food.html">Food</a>
-<a href="gallery.html">Gallery</a>
-<a href="enquiry.html">Enquiry</a>
-</nav>
-
+    <h1>Culture of Solapur</h1>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="places.html">Places</a>
+        <a href="culture.html">Culture</a>
+        <a href="travel-guide.html">Travel Guide</a>
+        <a href="food.html">Food</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="enquiry.html">Enquiry</a>
+    </nav>
 </header>
 
-<section>
+<section class="reveal">
+    <h2>Festivals of Solapur</h2>
+    
+    <h3>Siddheshwar Yatra</h3>
+    <p>
+        One of the largest festivals in the city, celebrated in honor of Shri Siddheshwar.
+        Devotees participate in religious ceremonies and grand processions during this festival.
+    </p>
+    <div class="image-gallery">
+        <img src="gallery/Siddheshwar Yatra.jpg" alt="Siddheshwar Yatra Festival">
+    </div>
 
-<h2>Festivals of Solapur</h2>
-
-<h3>Siddheshwar Yatra</h3>
-
-<p>
-One of the largest festivals in the city, celebrated in honor of Shri Siddheshwar.
-Devotees participate in religious ceremonies and grand processions during this festival.
-</p>
-
-<div class="image-gallery">
-<img src="gallery/Siddheshwar Yatra.jpg" alt="Siddheshwar Yatra Festival">
-</div>
-
-<h3>Ashadhi Wari</h3>
-
-<p>
-Ashadhi Wari is a famous pilgrimage where devotees walk long distances
-to reach Pandharpur while singing devotional songs and carrying palkhis.
-This spiritual journey reflects deep faith and devotion.
-</p>
-
-<div class="image-gallery">
-<img src="gallery/Ashadhi Wari.jpg" alt="Ashadhi Wari Pilgrimage">
-</div>
-
+    <h3>Ashadhi Wari</h3>
+    <p>
+        Ashadhi Wari is a famous pilgrimage where devotees walk long distances
+        to reach Pandharpur while singing devotional songs and carrying palkhis.
+        This spiritual journey reflects deep faith and devotion.
+    </p>
+    <div class="image-gallery">
+        <img src="gallery/Ashadhi Wari.jpg" alt="Ashadhi Wari Pilgrimage">
+    </div>
 </section>
 
-
-<section>
-
-<h2>Local Traditions</h2>
-
-<p>
-The culture of Solapur reflects a mix of Marathi and Kannada traditions.
-People celebrate religious festivals, community gatherings,
-and cultural programs throughout the year.
-</p>
-
-<p>
-Music, devotional songs, and temple rituals are an important
-part of everyday life in the region.
-</p>
-
+<section class="reveal">
+    <h2>Local Traditions</h2>
+    <p>
+        The culture of Solapur reflects a mix of Marathi and Kannada traditions.
+        People celebrate religious festivals, community gatherings,
+        and cultural programs throughout the year.
+    </p>
+    <p>
+        Music, devotional songs, and temple rituals are an important
+        part of everyday life in the region.
+    </p>
 </section>
 
+<section class="reveal">
+    <h2>Handloom and Textile Heritage</h2>
+    <p>Solapur is famous for its traditional textile products such as:</p>
 
-<section>
+    <ul>
+        <li>
+            Solapur Chaddars (bed sheets)
+            <div class="image-gallery">
+                <img src="gallery/chader.jpg" alt="Solapur Chaddar">
+            </div>
+        </li>
+        <li>
+            Cotton Towels
+            <div class="image-gallery">
+                <img src="gallery/cotton towels.jpg" alt="Cotton Towels">
+            </div>
+        </li>
+        <li>
+            Handloom Fabrics
+            <div class="image-gallery">
+                <img src="gallery/handloom fabrics.jpg" alt="Handloom Fabrics">
+            </div>
+        </li>
+    </ul>
 
-<h2>Handloom and Textile Heritage</h2>
-
-<p>Solapur is famous for its traditional textile products such as:</p>
-
-<ul>
-<li>Solapur Chaddars (bed sheets)</li>
-
-  <div class="image-gallery">
-<img src="gallery/chader.jpg" alt="chader Pilgrimage">
-</div>
-  
-<li>Cotton Towels</li>
-
-  <div class="image-gallery">
-<img src="gallery/cotton towels.jpg" alt="cotton towels Pilgrimage">
-</div>
-
-<li>Handloom Fabrics</li>
-  <div class="image-gallery">
-<img src="gallery/handloom fabrics.jpg" alt="handloom fabrics Pilgrimage">
-</div>
-  
-</ul>
-
-<p>
-These products are well known across India for their quality,
-durability, and traditional designs.
-</p>
-
+    <p>
+        These products are well known across India for their quality,
+        durability, and traditional designs.
+    </p>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Create an observer that triggers when a section is 15% visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        // Select all sections with the 'reveal' class and observe them
+        const hiddenElements = document.querySelectorAll('.reveal');
+        hiddenElements.forEach((el) => observer.observe(el));
+    });
+</script>
 
 </body>
 </html>
