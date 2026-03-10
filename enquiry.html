@@ -1,55 +1,294 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Tourist Enquiry</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tourist Enquiry - Solapur Tourism</title>
 <link rel="stylesheet" href="style.css">
 <script src="script.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* --- Global Styles (Matching Theme) --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f7f6; /* Soft, clean background */
+    overflow-x: hidden;
+}
+
+/* --- Header & Navigation (Sticky & Glassmorphism) --- */
+header {
+    text-align: center;
+    padding: 25px 20px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.8s ease-out forwards;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+header h1 {
+    color: #2c3e50;
+    margin: 0 0 15px 0;
+    font-size: 32px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #e74c3c;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: #e74c3c;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* --- Container & Section Cards (Matching Theme) --- */
+.container {
+    max-width: 800px; /* Slightly narrower for a form to look neat */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-left: 5px solid #e74c3c; /* Signature red border */
+    
+    /* Starting state for JS scroll reveal */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Class added by JS when scrolled into view */
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* --- Form Specific Styles --- */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    background-color: #fcfcfc;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Ensures padding doesn't widen the box */
+}
+
+/* Hover & Focus states for inputs */
+input:hover, textarea:hover {
+    border-color: #ccc;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #e74c3c;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15); /* Soft glow effect */
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    background-color: #e74c3c;
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #c0392b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 40px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    section {
+        padding: 25px;
+    }
+}
+</style>
+
 </head>
 
 <body>
 
 <header>
-<h1>Tourist Enquiry</h1>
-<nav>
-<a href="home.html">Home</a>
-<a href="places.html">Places</a>
-<a href="culture.html">Culture</a>
-<a href="travel-guide.html">Travel Guide</a>
-<a href="food.html">Food</a>
-<a href="enquiry.html">Enquiry</a>
-</nav>
+    <h1>Solapur Tourism</h1>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="places.html">Places</a>
+        <a href="culture.html">Culture</a>
+        <a href="travel-guide.html">Travel Guide</a>
+        <a href="food.html">Food</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="enquiry.html">Enquiry</a>
+    </nav>
 </header>
 
-<section>
+<div class="container">
+    <section class="reveal">
+        <h2>Plan Your Visit</h2>
+        
+        <form onsubmit="return validateForm()">
+            
+            <div class="input-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
 
-<form onsubmit="return validateForm()">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="text" id="email" placeholder="Enter your email" required>
+            </div>
 
-<label>Name</label>
-<input type="text" id="name">
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter your phone number">
+            </div>
 
-<label>Email</label>
-<input type="text" id="email">
+            <div class="input-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" placeholder="Where are you visiting from?">
+            </div>
 
-<label>Phone</label>
-<input type="text" id="phone">
+            <div class="input-group">
+                <label for="travelers">Number of Travelers</label>
+                <input type="number" id="travelers" placeholder="e.g. 2" min="1">
+            </div>
 
-<label>Country</label>
-<input type="text">
+            <div class="input-group">
+                <label for="date">Planned Travel Date</label>
+                <input type="date" id="date">
+            </div>
 
-<label>Number of Travelers</label>
-<input type="number">
+            <div class="input-group">
+                <label for="message">Message / Special Requests</label>
+                <textarea id="message" placeholder="How can we help you plan your trip?"></textarea>
+            </div>
 
-<label>Travel Date</label>
-<input type="date">
+            <button type="submit">Submit Enquiry</button>
 
-<label>Message</label>
-<textarea></textarea>
+        </form>
+    </section>
+</div>
 
-<button type="submit">Submit</button>
+<footer>
+    <p>&copy; 2026 Solapur Tourism</p>
+</footer>
 
-</form>
+<script>
+    // Smooth scroll reveal animation
+    document.addEventListener("DOMContentLoaded", function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.15 });
 
-</section>
+        const hiddenElements = document.querySelectorAll('.reveal');
+        hiddenElements.forEach((el) => observer.observe(el));
+    });
+</script>
 
 </body>
 </html>
