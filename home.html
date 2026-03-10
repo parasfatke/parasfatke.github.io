@@ -1,103 +1,255 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home - Solapur Tourism</title>
 <link rel="stylesheet" href="style.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-
-.welcome{
-background: linear-gradient(to right,#ff9a9e,#fad0c4);
-padding:60px;
-text-align:center;
-color:white;
+/* --- Global Styles --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
 }
 
-.welcome h1{
-font-size:40px;
-margin-bottom:10px;
+/* --- Header & Navigation (Matching Culture Page) --- */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: slideDown 0.8s ease-out forwards;
 }
 
-.welcome p{
-font-size:18px;
-max-width:800px;
-margin:auto;
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
-.content{
-padding:30px;
-margin:20px;
-background:white;
-border-radius:10px;
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #e74c3c;
+    transition: width 0.3s ease;
+}
+
+nav a:hover {
+    color: #e74c3c;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* --- Welcome Hero Section --- */
+.welcome {
+    /* Animated Gradient */
+    background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fad0c4, #ffb199);
+    background-size: 400% 400%;
+    animation: gradientHero 12s ease infinite;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+@keyframes gradientHero {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.welcome h2 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    animation: fadeInDrop 1s ease-out forwards;
+}
+
+.welcome p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.6;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeInDrop 1s ease-out 0.3s forwards;
+}
+
+@keyframes fadeInDrop {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Content Section (Converted to Grid Cards) --- */
+.content-wrapper {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    border-top: 4px solid #fad0c4;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Starting state for JS scroll reveal */
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* Hover effect on cards */
+.info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+.info-card p {
+    line-height: 1.7;
+    color: #444;
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Class added by JS when scrolled into view */
+.info-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 40px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<h1>Solapur Tourism</h1>
-
-<nav>
-<a href="home.html">Home</a>
-<a href="places.html">Places</a>
-<a href="culture.html">Culture</a>
-<a href="travel-guide.html">Travel Guide</a>
-<a href="food.html">Food</a>
-<a href="gallery.html">Gallery</a>
-<a href="enquiry.html">Enquiry</a>
-</nav>
-
+    <h1>Solapur Tourism</h1>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="places.html">Places</a>
+        <a href="culture.html">Culture</a>
+        <a href="travel-guide.html">Travel Guide</a>
+        <a href="food.html">Food</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="enquiry.html">Enquiry</a>
+    </nav>
 </header>
 
-
-<!-- Welcome Section -->
-
 <section class="welcome">
-
-<h1>Welcome to Solapur</h1>
-
-<p>
-Solapur is a historic and culturally rich city located in the southern part of Maharashtra,
-close to the borders of Karnataka and Telangana. The city is known for its spiritual centers,
-historic monuments, traditional festivals, and vibrant culture.
-</p>
-
+    <h2>Welcome to Solapur</h2>
+    <p>
+        Solapur is a historic and culturally rich city located in the southern part of Maharashtra,
+        close to the borders of Karnataka and Telangana. The city is known for its spiritual centers,
+        historic monuments, traditional festivals, and vibrant culture.
+    </p>
 </section>
 
+<div class="content-wrapper">
+    <div class="info-card reveal">
+        <p>
+            For centuries, Solapur has been an important destination for pilgrims and travelers.
+            Many famous spiritual places such as Siddheshwar Temple, Pandharpur, and Akkalkot
+            are located in and around the city.
+        </p>
+    </div>
 
-<section class="content">
+    <div class="info-card reveal">
+        <p>
+            These destinations attract millions of devotees every year.
+            Apart from spirituality, Solapur also has a strong cultural identity.
+            The city is well known for its traditional textiles like Solapur chaddars and towels,
+            which are famous across India.
+        </p>
+    </div>
 
-<p>
-For centuries, Solapur has been an important destination for pilgrims and travelers.
-Many famous spiritual places such as Siddheshwar Temple, Pandharpur, and Akkalkot
-are located in and around the city.
-</p>
+    <div class="info-card reveal">
+        <p>
+            Visitors to Solapur can experience a blend of spirituality, history,
+            local traditions, and delicious regional cuisine. This website introduces some of the most 
+            important places, traditions, travel information, and local food that make it a unique destination.
+        </p>
+    </div>
+</div>
 
-<p>
-These destinations attract millions of devotees every year.
-Apart from spirituality, Solapur also has a strong cultural identity.
-</p>
+<footer>
+    <p>&copy; 2026 Solapur Tourism</p>
+</footer>
 
-<p>
-The city is well known for its traditional textiles like Solapur chaddars and towels,
-which are famous across India.
-</p>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Add staggered delay to cards
+        const cards = document.querySelectorAll('.reveal');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Slight delay for each subsequent card so they don't pop in all at once
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
 
-<p>
-Visitors to Solapur can experience a blend of spirituality, history,
-local traditions, and delicious regional cuisine.
-</p>
-
-<p>
-This website introduces some of the most important places, traditions,
-travel information, and local food that make Solapur a unique destination.
-</p>
-
-</section>
+        cards.forEach((el) => observer.observe(el));
+    });
+</script>
 
 </body>
 </html>
